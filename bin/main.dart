@@ -3,11 +3,11 @@ import 'dart:convert';
 
 main(List<String> arguments) {
 
-  int zlib = testCompress(ZLIB);
-  int gzip = testCompress(GZIP);
+  int zlib_compressed = testCompress(zlib);
+  int gzip_compressed = testCompress(gzip);
 
-  print('zlib = ${zlib}');
-  print('gzip = ${gzip}');
+  print('zlib = ${zlib_compressed}');
+  print('gzip = ${gzip_compressed}');
 
 }
 
@@ -24,7 +24,7 @@ String generateData() {
 int testCompress(var codec) {
   String data = generateData();
 
-  List original = UTF8.encode(data);
+  List original = utf8.encode(data);
   List compressed = codec.encode(original);
   List decompressed = codec.decode(compressed);
 
@@ -35,7 +35,7 @@ int testCompress(var codec) {
 
   print('');
 
-  String decoded = UTF8.decode(decompressed);
+  String decoded = utf8.decode(decompressed);
   assert(data == decoded);
 
   return compressed.length;
